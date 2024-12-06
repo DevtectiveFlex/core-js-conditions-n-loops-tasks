@@ -21,8 +21,11 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  if (number >= 0) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -38,8 +41,11 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  if (a > b && a > c) {
+    return a;
+  }
+  return b > c ? b : c;
 }
 
 /**
@@ -82,8 +88,15 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (
+    (a === b && a !== 0 && c !== 0 && a + b > c) ||
+    (b === c && b !== 0 && a !== 0 && c + b > a) ||
+    (a === c && a !== 0 && b !== 0 && a + c > b)
+  ) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -105,7 +118,7 @@ function convertToRomanNumerals(/* num */) {
 }
 
 /**
- * Converts a number to a string, replacing digits with words.
+ * 'Converts a number to a string, replacing digits with words.'
  * In this task, the use of methods of the String and Array classes is not allowed.
  *
  * @param {string} numberStr - The number as a string.
@@ -119,8 +132,61 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let result = '';
+  let whitespace = ' ';
+
+  for (let i = 0; i < numberStr.length; i += 1) {
+    if (numberStr.length === 1 || i === numberStr.length - 1) {
+      whitespace = '';
+    } else {
+      whitespace = ' ';
+    }
+    switch (numberStr[i]) {
+      case '0':
+        result += `zero${whitespace}`;
+        break;
+      case '1':
+        result += `one${whitespace}`;
+        break;
+      case '2':
+        result += `two${whitespace}`;
+        break;
+      case '3':
+        result += `three${whitespace}`;
+        break;
+      case '4':
+        result += `four${whitespace}`;
+        break;
+      case '5':
+        result += `five${whitespace}`;
+        break;
+      case '6':
+        result += `six${whitespace}`;
+        break;
+      case '7':
+        result += `seven${whitespace}`;
+        break;
+      case '8':
+        result += `eight${whitespace}`;
+        break;
+      case '9':
+        result += `nine${whitespace}`;
+        break;
+      case '-':
+        result += `minus${whitespace}`;
+        break;
+      case '.':
+        result += `point${whitespace}`;
+        break;
+      case ',':
+        result += `point${whitespace}`;
+        break;
+      default:
+        break;
+    }
+  }
+  return result;
 }
 
 /**
@@ -135,8 +201,17 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let reversed = '';
+  for (let i = str.length - 1; i >= 0; i -= 1) {
+    reversed += str[i];
+  }
+  let result = false;
+  if (reversed === str) {
+    result = true;
+  }
+
+  return result;
 }
 
 /**
