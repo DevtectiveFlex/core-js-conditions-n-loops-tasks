@@ -66,8 +66,16 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  if (
+    queen.x === king.x ||
+    queen.y === king.y ||
+    queen.x - king.y === king.x - queen.y ||
+    (queen.x === queen.y && king.x === king.y)
+  ) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -228,8 +236,13 @@ function isPalindrome(str) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 /**
@@ -247,8 +260,14 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  const str = String(num);
+  for (let i = 0; i < str.length; i += 1) {
+    if (Number(str[i]) === digit) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /**
@@ -264,8 +283,25 @@ function isContainNumber(/* num, digit */) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  let left = 0;
+  let right = 0;
+  for (let i = 1; i < arr.length - 1; i += 1) {
+    left = 0;
+    right = 0;
+    for (let j = 0; j < arr.length; j += 1) {
+      if (j < i) {
+        left += arr[j];
+      }
+      if (j > i) {
+        right += arr[j];
+      }
+    }
+    if (left === right) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 /**
@@ -276,7 +312,7 @@ function getBalanceIndex(/* arr */) {
  * @param {number} size - The size of the matrix.
  * @return {number[][]} The spiral matrix.
  *
- * @example:
+ * @example:_
  *        [
  *          [1, 2, 3],
  *  3  =>   [8, 9, 4],
