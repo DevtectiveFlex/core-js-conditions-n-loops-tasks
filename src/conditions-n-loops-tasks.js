@@ -121,8 +121,36 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const roman = {
+    1: 'I',
+    2: 'II',
+    3: 'III',
+    4: 'IV',
+    5: 'V',
+    6: 'VI',
+    7: 'VII',
+    8: 'VIII',
+    9: 'IX',
+  };
+  let result = '';
+
+  if (num < 9) {
+    return roman[num];
+  }
+  if (num % 10 === 0) {
+    for (let i = 0; i < num / 10; i += 1) {
+      result += 'X';
+    }
+  } else {
+    const part = num % 10;
+    const container = num - part;
+    for (let i = 0; i < container / 10; i += 1) {
+      result += 'X';
+    }
+    result += roman[part];
+  }
+  return result;
 }
 
 /**
@@ -362,8 +390,18 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
+function sortByAsc(arr) {
+  const result = arr;
+  for (let i = 0; i < result.length; i += 1) {
+    for (let j = 0; j < result.length; j += 1) {
+      if (result[i] < result[j]) {
+        const swap = result[i];
+        result[i] = result[j];
+        result[j] = swap;
+      }
+    }
+  }
+  return result;
 }
 
 /**
@@ -383,8 +421,21 @@ function sortByAsc(/* arr */) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  let result = str;
+  for (let i = 0; i < iterations; i += 1) {
+    let even = '';
+    let odd = '';
+    for (let j = 0; j < result.length; j += 1) {
+      if (j % 2 === 0) {
+        even += result[j];
+      } else {
+        odd += result[j];
+      }
+    }
+    result = even + odd;
+  }
+  return result;
 }
 
 /**
